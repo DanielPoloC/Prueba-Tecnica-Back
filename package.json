@@ -1,0 +1,33 @@
+{
+  "name": "prueba-cidenet-api",
+  "version": "1.0.0",
+  "description": "prueba tecnica api cidenet",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dpolo-jamar/prueba-cidenet-api.git"
+  },
+  "author": "dpolo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dpolo-jamar/prueba-cidenet-api/issues"
+  },
+  "homepage": "https://github.com/dpolo-jamar/prueba-cidenet-api#readme",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "pg": "^8.7.3"
+  },
+  "engines": {
+    "node": "14.17.6",
+    "npm": "6.4.15"
+  },
+  "keywords": [
+    "cidenet",
+    "heroku",
+    "Prueba"
+  ]
+}
