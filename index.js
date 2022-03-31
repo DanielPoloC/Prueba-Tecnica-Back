@@ -31,8 +31,8 @@ app.get("/v1/empleados/obtener", async (req, res) => {
         TO_CHAR(fecha_ingreso, 'DD/MM/YYYY') fecha_ingreso,
         nombre_area,
         estado,
-        TO_CHAR(fecha_registro, 'DD/MM/YYYY HH:MM:SS') fecha_registro,
-        TO_CHAR(fecha_edicion, 'DD/MM/YYYY'  HH:MM:SS) fecha_edicion
+        TO_CHAR(fecha_registro, 'DD/MM/YYYY hh:mm:ss') fecha_registro,
+        TO_CHAR(fecha_edicion, 'DD/MM/YYYY  hh:mm:ss') fecha_edicion
       FROM empleado 
       WHERE estado = 'Activo'
     `
