@@ -19,6 +19,7 @@ app.get("/v1/empleados/obtener", async (req, res) => {
   try {
     const query = `
       SELECT 
+        id,
         primer_nombre,
         otros_nombres,
         primer_apellido,
@@ -29,7 +30,9 @@ app.get("/v1/empleados/obtener", async (req, res) => {
         correo_electronico,
         TO_CHAR(fecha_ingreso, 'DD/MM/YYYY') fecha_ingreso,
         nombre_area,
-        estado
+        estado,
+        fecha_registro,
+        fecha_edicion
       FROM empleado 
       WHERE estado = 'Activo'
     `
