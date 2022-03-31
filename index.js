@@ -109,8 +109,7 @@ app.put("/v1/empleados/modificar", async (req, res) => {
   }
 });
 
-app.delete("/v1/empleados/eliminar/:identificacion", async (req, res) => {
-  console.log(req);
+app.delete("/v1/empleados/:identificacion/eliminar", async (req, res) => {
   try {
     const query = `
         update empleado 
