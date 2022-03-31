@@ -1,15 +1,12 @@
 require("dotenv").config();
 
 const express = require("express");
+const cors = require('cors');
+
 const app = express();
+
+app.use(cors());
 app.use(express.json())
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", '*');
-  res.header("Access-Control-Allow-Credentials", true);
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-  res.header("Access-Control-Allow-Headers", 'Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
-  next();
-})
 
 const { Pool } = require('pg')
 const pool = new Pool({ ssl: { rejectUnauthorized: false } })
@@ -112,15 +109,16 @@ app.put("/v1/empleados/modificar", async (req, res) => {
   }
 });
 
-app.delete("/v1/empleados/eliminar", async (req, res) => {
+app.delete("/v1/empleados/eliminar/:identificacion", async (req, res) => {
+  console.log(req);
   try {
     const query = `
         update empleado 
         set estado = 'Inactivo' 
-        where numero_identificacion = '${req.body.documento}'
+        where numero_identificacion = '${req.params.identificacion}'
       `
     const result = await pool.query(query)
-    res.send({ success: true, result: result.rowCount ? "Modificado con Éxito" : "No se encontró empleado" })
+    res.send({ success: true, result: result.rowCount ? "Eliminado con Éxito" : "No se encontró empleado" })
   } catch (error) {
     console.error(error);
     res.send({ success: false, result: error.message })
