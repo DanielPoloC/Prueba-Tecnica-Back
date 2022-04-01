@@ -71,7 +71,7 @@ app.post("/v1/empleados/crear", async (req, res) => {
         '${req.body.tipo_identificacion}',
         '${req.body.numero_identificacion}',
         '${req.body.correo_electronico}',
-        TO_DATE('${req.body.fecha_ingreso}', 'DD/MM/YYYY'),
+        TO_DATE(${req.body.fecha_ingreso ? '\'' + req.body.fecha_ingreso + '\'' : null}, 'DD/MM/YYYY'),
         '${req.body.nombre_area}',
         '${req.body.estado}'
       )
