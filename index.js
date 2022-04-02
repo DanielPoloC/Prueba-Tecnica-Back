@@ -127,6 +127,26 @@ app.delete("/v1/empleados/:identificacion/eliminar", async (req, res) => {
   }
 });
 
+app.get("/v1/empleados/:nombre/:apellido/correo", async (req, res) => {
+  try {
+    const nombre = req.params.nombre
+    const apellido = req.params.apellido
+    const query = `
+      SELECT count(correo_electronico) secuencia
+      from empleado e 
+      where primer_nombre = '${nombre}' 
+        and primer_apellido = '${apellido}'
+    `
+    const result = await pool.query(query)
+    const secuencia = result.rows[0].secuencia 
+
+    res.send({ success: true, result: `${nombre}.${apellido}${secuencia > 0 ? '.' + secuencia : ''}@cidenet.com.co`})
+  } catch (error) {
+    console.error(error);
+    res.send({ success: false, result: error.message })
+  }
+})
+
 app.listen(process.env.PORT || 3000, () => {
   console.info("PORT", process.env.PORT || 3000);
 });
